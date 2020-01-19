@@ -3,7 +3,6 @@ FROM ubuntu:18.04
 # gcc for cgo
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
-        
 		g++ \
 		gcc \
 		libc6-dev \
