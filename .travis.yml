@@ -1,0 +1,18 @@
+language: shell
+os: linux
+arch: amd64
+dist: bionic
+
+services: docker
+
+branches:
+  only:
+    - master
+
+env:
+  - GOLANG_VERSION=1.13.6 GOLANG_SHA256=a1bc06deb070155c4f67c579f896a45eeda5a8fa54f35ba233304074c4abbbbd
+
+script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build --pull -t alvisisme/golang:$GOLANG_VERSION --build-arg GOLANG_VERSION=$GOLANG_VERSION --build-arg GOLANG_SHA256=$GOLANG_SHA256 .
+  - docker push alvisisme/golang:$GOLANG_VERSION
