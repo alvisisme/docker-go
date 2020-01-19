@@ -16,7 +16,7 @@ ARG GOLANG_SHA256
 RUN set -eux; \
 	goRelArch='linux-amd64'; \
 	url="https://golang.org/dl/go${GOLANG_VERSION}.${goRelArch}.tar.gz"; \
-	wget -O go.tgz "$url"; \
+	wget --no-check-certificate -O go.tgz "$url"; \
 	echo "${GOLANG_SHA256} *go.tgz" | sha256sum -c -; \
 	tar -C /usr/local -xzf go.tgz; \
 	rm go.tgz; \
